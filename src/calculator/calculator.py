@@ -1,3 +1,5 @@
+import requests
+
 def add(a, b):
     """Return the sum of two numbers."""
     return a + b
@@ -15,3 +17,11 @@ def divide(a, b):
     if b == 0:
         raise ValueError("Cannot divide by zero.")
     return a / b
+
+def get_exchange_rate(from_currency, to_currency):
+    response = requests.get(f"https://api.exchangerate-api.com/v4/latest/{from_currency}")
+    data = response.json()
+    return data["rates"][to_currency]
+
+
+
