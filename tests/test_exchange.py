@@ -8,4 +8,5 @@ def test_get_exchange_rate(mocker):
     result = get_exchange_rate("EUR","USD")
 
     assert result == 1.25
-    
+
+ 

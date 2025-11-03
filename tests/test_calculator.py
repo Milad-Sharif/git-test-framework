@@ -1,6 +1,8 @@
 
 import pytest
 import requests
+from calculator import calculator as calc
+
 
 # def test_add():
 #     assert add(1, 2) == 3
@@ -38,6 +40,20 @@ def test_multiplication_param(calc, a, b, exp):
 
 def test_divide_param(calc, a, b, exp):  
     assert calc.divide(a, b) == pytest.approx(exp, rel=1e-6)
+
+
+def test_divide_by_zero():
+    with pytest.raises(ValueError) as excinfo:
+        calc.divide(10,0)
+    assert "Cannot divide by zero" in str(excinfo.value)
+
+def test_divide_negative():
+    result = calc.divide(10, -2)
+    assert result == -5
+
+
+
+
 
 
 
