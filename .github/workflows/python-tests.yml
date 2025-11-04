@@ -33,5 +33,12 @@ jobs:
       run: pytest -n auto --maxfail=1 --disable-warnings -q
 
     
+    - name: Run linters & type checks
+      run: |
+          black --check src tests
+          ruff check src tests
+          mypy src
+
+    
 
       
