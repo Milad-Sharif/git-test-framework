@@ -19,6 +19,7 @@ jobs:
       with:
         python-version: '3.10'
 
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -32,7 +33,7 @@ jobs:
 
 
     - name: Upload tests and generate reports
-      uses: actions/setup-python@v4
+      uses: actions/Upload-artifact@v4
       with:
         name: test-and-coverage-reports
         path: |
@@ -50,6 +51,10 @@ jobs:
           black --check src tests
           ruff check src tests
 #         mypy src
+
+
+
+
 
     
 
