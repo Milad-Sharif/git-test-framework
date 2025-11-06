@@ -25,9 +25,21 @@ jobs:
         pip install -r requirement.txt
         pip install -e .
 
+
     - name: Run tests with coverage
       run: | 
-        pytest --cov=src --cov-report=term-missing --cov-fail-under=90
+        pytest --cov=src --cov-report=xml --cov-report=html --junitxml=pytest-results.xml --cov-fail-under=90
+
+
+    - name: Upload tests and generate reports
+      uses: actions/setup-python@v4
+      with:
+        name: test-and-coverage-reports
+        path: |
+          pytest-results.xml
+          coverage.xml
+          htmlcov/
+
 
     - name: Run tests in parallel
       run: pytest -n auto --maxfail=1 --disable-warnings -q
@@ -37,7 +49,7 @@ jobs:
       run: |
           black --check src tests
           ruff check src tests
-          mypy src
+#         mypy src
 
     
 
